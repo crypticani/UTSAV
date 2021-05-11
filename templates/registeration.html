@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | UTSAV</title><link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+  {% include "head.html" %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br>
+<div class="container">
+<h1 class="bg-dark">Register</h1>
+    <div class="row">
+    <div class="col-xl bg-warning">
+        <br>
+  <h2>Rules and Regulations</h2>
+  <p>
+      <br>
+    {% for rule in rules %}
+    <li>{{ rule.rule }}</li>
+      {% endfor %}
+  <br></p>
+    </div>
+    <div class="col-xl bg-warning">
+        <br>
+  <h2>
+    Important Information for captains
+  </h2>
+ <p>
+   A captain of a team needs to contact the administrator or the sports official to obtain the rights of the captain.
+   <br>
+   After obtaining the rights of a captain, you can manage your team and make any player active or inactive.
+ </p>
+<br>
+    </div>
+    </div><br>
+<!-- Trigger the modal with a button -->
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-8">
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalt" style = "float:left;">Team Registration</button>
+
+<!-- Modal -->
+<div id="myModalt" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content bg-info">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Registration for team events</h4>
+      </div>
+      <div class="modal-body">
+       <form action="TeamRegister" method="POST" onsubmit="alert('Succesfully Registered.')">
+    {% csrf_token %}
+  <h3>Fill this form to register yourself to a team</h3>
+  Team Name:<br>
+    <select required name="team_id" class="form-select">
+      <option value=" " disabled selected>-select team-</option>
+      {% for t in data1 %}
+      <option value="{{ t.id }}">{{ t.team_name }} {{ t.event_name }}</option>
+      {% endfor %}
+  </select><br>
+  Name:<br>
+  <input type="text" name="player_name" placeholder="Enter your Name" value="{{ user.first_name }} {{ user.last_name }}" required size="30"><br>
+  ID Number:<br>
+  <input type="number" name="id_number" placeholder="Enter your ID card Number" value="{{ user.username }} required size="30"><br>
+  <br>Email ID:<br>
+  <input type="email" name="email" value="{{ user.email }}" required size="30"><br>
+  <br>
+<p>
+  <input class="btn-lg btn-primary" type="submit" value="Register" onclick="if(confirm('Are you sure?')){success()}else{return false;};" >
+</p>
+</form>
+    <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModali">Individual Registration</button>
+
+<!-- Modal -->
+<div id="myModali" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content bg-info">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Registeration for Individual events</h4>
+      </div>
+      <div class="modal-body">
+
+<form action="IndRegister" method="post" onsubmit="alert('Succesfully Registered.')">
+    {% csrf_token %}
+  <h3>Fill this form to register yourself</h3>
+  ID Number:<br>
+  <input type="number" name="idnum" value="{{ user.username }}" required size="30"><br>
+  <br>Name:<br>
+  <input type="text" name="name" value="{{ user.first_name }} {{ user.last_name }}" required size="30"><br>
+   <!-- <br> Category:<br>
+  <select required name="category" class="form-select">
+    {% for i in data3 %}
+      <option value="{{ i.category_id }}">{{ i.category }}</option>
+    {% endfor %}
+  </select> -->
+  <br>Select Event:<br>
+  <select required name="event" class="form-select">
+    <option value=" " disabled selected>-select event-</option>
+    {% for e in data4 %}
+      <option value="{{ e.tevent_id }}">{{ e.events }} {{ e.category }}</option>
+    {% endfor %}
+  </select><br>
+  Course:<br>
+  <select required name="course" class="form-select">
+        <option value="{{ user.profile.course }}">{{ user.profile.course }}</option>
+          {% for c in data5 %}
+            <option value="{{ c.course }}">{{ c.course }}</option>
+          {% endfor %} 
+  </select><br>
+  Mobile number:<br>
+  <input type="tel" name="mobile" value="{{ user.profile.mobile }}" required size="30"><br>
+  <br>Email ID:<br>
+  <input type="email" name="email" value="{{ user.email }}" required size="30"><br>
+  <br><br>
+<p class="reg_p">
+  <input class="btn-lg btn-primary" type="submit" value="Register"  onclick="if(confirm('Are you sure?')){success()}else{return false;};">
+</p>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

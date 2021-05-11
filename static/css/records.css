@@ -1,0 +1,10 @@
+table tr, td, .card-body{
+  background-color: #b1b3b4;
+}
+
+.sports{
+  transition: 0.5s;
+  margin: 10px;
+}
+
+

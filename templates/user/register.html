@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   {% include "head.html" %}
+    <title>Signup | Utsav</title>
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br><br>
+<div class="container">
+<div class="col-lg-5"></div>
+<div class="col-lg-4 bg-warning">
+<br>
+<h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+<p>Use your ID card number as username</p>
+  {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit" class="btn btn-outline-primary">Sign up</button>
+</form>
+<br>
+</div>
+</div>
+<br><br>
+{% include 'footer.html' %}
+</body>
+</html>

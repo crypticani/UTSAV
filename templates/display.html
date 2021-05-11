@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head.html" %}
+  </head>
+<body>
+  <div class="container">
+    {% include "nav.html" %}
+    <br><br><br>
+<form method="POST" action="/Display">
+{% csrf_token %}
+{% if allTeams %}
+<h4>You can enable or disable players of your team.</h4>
+<h5>Select Your Team</h5>
+<select name = 'choice'>
+{% for choices in allTeams %}
+     <option value="none" selected disabled hidden> 
+            {{ mychoice }}
+      </option> 
+    <option value = '{{ choices.id }}'>
+        {{ choices.event_name.events }} {{ choices.team_name }}
+    </option>
+{% endfor %}
+</select>
+<button type="submit" class="btn btn-primary" name="choiceButton">Go</button>
+</form>
+<br>
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+<form method = "post" action = "/Display">
+{% csrf_token %}
+
+<div class="table table-responsive">
+  <table align="center">
+ <tr>
+ <th class="record_th">Name</th>
+ <th class="record_th">ID Number</th>
+ <th class="record_th">Is Active</th>
+ <th class="record_th">Action</th>
+ </tr>
+      {% for mydata in data %}
+          <tr>
+          <td>{{ mydata.player_name }}</td>
+          <td>{{ mydata.id_number }}</td>
+          <td>{{ mydata.is_active }}</td>
+          <td>
+            {% if mydata.is_active == True %}
+              <button type="submit" name="active" class="btn btn-danger"value="{{ mydata.player_id }}" >Remove</button> <br>
+            {% elif mydata.is_active == False %}
+             <button type="submit" name="active" class="btn btn-success" value="{{ mydata.player_id }}" >Add</button> <br>
+            {% endif %}
+          </td>
+         </tr>
+ {% endfor %}
+   </table>
+ </div>
+</form>
+
+{% else %}
+    <h2>Invalid Credentials!</h2>
+    <h4>You must be a captain of any team to access this dashboard.</h4>
+    <h5>Please contact the administrator or sports official to be a captain of a team.</h5>
+{% endif %}
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

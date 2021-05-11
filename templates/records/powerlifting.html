@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Powerlifting Records | UTSAV</title>
+  {% include 'head.html' %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+<div>
+    {% include 'nav.html' %}
+</div>
+<div>
+    {% include 'records/recordsnav.html' %}
+</div>
+<br><br><br><br><br>
+<div class="container">
+<h1 class="bg-dark">Powerlifting</h1>
+<div class="bg-warning">
+<br>
+    <button type="button" class="btn btn-primary" onclick="$('#filter').toggle();">Filter</button>
+<br>
+<div id="filter" style="display: none">
+<form method="get">
+   {% for field in myFilter.form %}
+       <div class="row">
+       <div class="col-sm-3">
+       {{ field.label_tag }}
+       </div>
+           <div class="col-sm-3">
+    {{ field }}
+           </div>
+       </div>
+    {% endfor %}
+    <input type="submit" />
+    <input type="reset">
+</form>
+</div>
+<br>
+</div>
+
+<div class="table table-responsive">
+ <table align="center">
+<tr>
+<th class="record_th">Event ID</th>
+<th class="record_th">Date</th>
+    <th class="record_th">Category</th>
+<th class="record_th">Player Name</th>
+    <th class="record_th">Weight</th>
+<th class="record_th">Result</th>
+</tr>
+     {% for myrecords in record %}
+         <tr>
+         <td>{{ myrecords.event_id }}</td>
+         <td>{{ myrecords.date }}</td>
+             <td>{{ myrecords.category }}</td>
+         <td>{{ myrecords.player_name }}</td>
+             <td>{{ myrecords.weight }}</td>
+         <td>{{ myrecords.result }}</td>
+        </tr>
+{% endfor %}
+  </table>
+</div>
+<br><br>
+<button class="btn btn-primary" onclick="window.print()">Print</button>
+</div>
+</body>
+</html>

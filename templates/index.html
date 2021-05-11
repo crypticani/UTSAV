@@ -1,0 +1,226 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+    {% include "head.html" %}
+  <title>UTSAV | DSVV</title>
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <style>
+      .animated-button9 {
+  background: linear-gradient(-30deg, #0b0b3d 50%, #08082b 50%);
+  padding: 20px 40px;
+  margin: 10px;
+  display: inline-block;
+  -webkit-transform: translate(0%, 0%);
+          transform: translate(0%, 0%);
+  overflow: hidden;
+  color: #d4d4f7;
+  font-size: 20px;
+  letter-spacing: 2.5px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.animated-button9::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #8585ad;
+  opacity: 0;
+  -webkit-transition: .2s opacity ease-in-out;
+  transition: .2s opacity ease-in-out;
+}
+
+.animated-button9:hover::before {
+  opacity: 0.2;
+}
+
+.animated-button9 span {
+  position: absolute;
+}
+
+.animated-button9 span:nth-child(1) {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, right top, left top, from(rgba(8, 8, 43, 0)), to(#2626d9));
+  background: linear-gradient(to left, rgba(8, 8, 43, 0), #2626d9);
+  -webkit-animation: 2s animateTop linear infinite;
+          animation: 2s animateTop linear infinite;
+}
+
+@keyframes animateTop {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+.animated-button9 span:nth-child(2) {
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 2px;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(8, 8, 43, 0)), to(#2626d9));
+  background: linear-gradient(to top, rgba(8, 8, 43, 0), #2626d9);
+  -webkit-animation: 2s animateRight linear -1s infinite;
+          animation: 2s animateRight linear -1s infinite;
+}
+
+@keyframes animateRight {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+
+.animated-button9 span:nth-child(3) {
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(8, 8, 43, 0)), to(#2626d9));
+  background: linear-gradient(to right, rgba(8, 8, 43, 0), #2626d9);
+  -webkit-animation: 2s animateBottom linear infinite;
+          animation: 2s animateBottom linear infinite;
+}
+
+@keyframes animateBottom {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+
+.animated-button9 span:nth-child(4) {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 2px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 8, 43, 0)), to(#2626d9));
+  background: linear-gradient(to bottom, rgba(8, 8, 43, 0), #2626d9);
+  -webkit-animation: 2s animateLeft linear -1s infinite;
+          animation: 2s animateLeft linear -1s infinite;
+}
+
+@keyframes animateLeft {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
+.marquee{
+  border: 1px solid #4a4a4a;
+  color: #e93a0e;
+  font-weight: bold;
+}
+  </style>
+
+  <!-- Place favicon.ico in the root directory -->
+
+</head>
+
+<body>
+
+    {% include "nav.html" %}
+<div>
+<div class="lead bg-warning text-dark top">
+    <br><br>
+  <h1 class="display-2">UTSAV</h1>
+  <h2 class="display-5">The annual celebration of sports and cultural events</h2>
+  <h3>An opportunity for the students to represent and develop their co-curricular skills.</h3>
+    <div class="marquee">
+    <marquee>
+      {% for n in data %}
+      **{{ n.content }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {% endfor %}
+  </marquee>
+    </div>
+  </div>
+    <div id="background" style="background: url('{% static 'css/img/cover.jpg' %}')">
+  <br>
+  <div class="mybutton"></div>
+  <div class="row">
+    <div class="col-xl"><br></div>
+<div class="col-xl">
+  <a href="{% url 'events' %}" class="animated-button9">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <h3 class="mybtn">EVENTS</h3></a>
+</div>
+    <div class="col-xl"><br></div>
+  <div class="col-xl">
+    <a href="{% url 'registeration' %}" class="animated-button9">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+        <h3 class="mybtn">REGISTER</h3></a>
+</div>
+    <div class="col-xl"><br><br></div>
+  </div>
+  <br><br><br><br>
+</div>
+</div>
+<br><br><br>
+<div id="about" class="container">
+   <div class="row">
+       <h1 class="ah1 bg-dark display-4">About Utsav</h1>
+    <div class="col-xl">
+      <br>
+      <p class="col-xl-auto about-p" style="text-align: center">
+        Utsav is the annual sports and cultural festival of Dev Sanskriti Vishwavidyalaya, Haridwar.
+        It is organized every year in the month of February and March.
+        At Utsav, students from all departments of DSVV participate to showcase
+        their talent and passion for sports and cultural activities. <br>
+        Get a glimpse of glory and energy of Utsav 2020 with this documentary.
+        Embrace yourself and watch the highlights of the events that took place last season.
+        From Basketball to Cricket; from dance to rangoli;
+        discover all the beautiful and glorious memories and fill your hearts with curiosity.
+      </p><br>
+      <a target="_blank" href="https://youtu.be/gra_v_WH4Yg" class="btn btn-outline-primary btn-block">
+        <h3 class="lookback">Take a Lookback</h3></a>
+        <br><br>
+    </div>
+
+    <div class="col-xl">
+      <img src="{% static '/css/img/depprofile.jpg' %}" style="max-width: 100%; height: auto">
+    </div>
+     <br><br><br>
+  </div>
+  <br><br>
+</div>
+{% include 'footer.html' %}
+</body>
+
+</html>

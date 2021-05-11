@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events | UTSAV</title>
+  {% include "head.html" %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br>
+<div class="container">
+<div>
+<h2 class="event_h2 bg-dark text-info">Upcoming Events:</h2>
+{% for myevent in ind_upcoming %}
+<!-- {% if myevent %} -->
+<div class="mycard">
+  <h3>{{ myevent.event }}</h3>
+  <h5>{{ myevent.fix }}</h5>
+     <b>Category:</b> <br>
+  {{ myevent.category }} <br>
+    <b>Date and Time:</b> <br>
+  {{ myevent.datetime }} <br>
+    <b>Venue:</b><br>
+    {{ myevent.venue }}
+</div>
+<!-- {% endif %} -->
+{% endfor %}
+</div>
+{% for myevent in team_upcoming %}
+<!-- {% if myevent %} -->
+<div class="mycard">
+  <h3>{{ myevent.event }}</h3>
+  <h5>{{ myevent.team1 }} vs {{ myevent.team2 }}</h5>
+     <!-- <b>Category:</b> <br>
+  {{ myevent.category }} <br> -->
+    <b>Date and Time:</b> <br>
+  {{ myevent.datetime }} <br>
+    <b>Venue:</b><br>
+    {{ myevent.venue }}
+</div>
+<!-- {% endif %} -->
+{% endfor %}
+
+<br><br><br><br><br>
+<div class="container">
+<h2 class="event_h2 bg-dark text-info">Past Events:</h2>
+{% for myevent in ind_past %}
+    <!-- {% if myevent %} -->
+<div class="mycard">
+  <h3>{{ myevent.event }}</h3>
+  <h5>{{ myevent.fix }}</h5>
+    <b>Category:</b> <br>
+  {{ myevent.category }} <br>
+    <b>Date and Time:</b> <br>
+  {{ myevent.datetime }} <br>
+    <b>Venue:</b><br>
+    {{ myevent.venue }} <br>
+</div>
+    <!-- {% endif %} -->
+{% endfor %}
+</div>
+{% for myevent in team_past %}
+<!-- {% if myevent %} -->
+<div class="mycard">
+  <h3>{{ myevent.event }}</h3>
+  <h5>{{ myevent.team1 }} vs {{ myevent.team2 }}</h5>
+     <!-- <b>Category:</b> <br>
+  {{ myevent.category }} <br> -->
+    <b>Date and Time:</b> <br>
+  {{ myevent.datetime }} <br>
+    <b>Venue:</b><br>
+    {{ myevent.venue }}
+</div>
+<!-- {% endif %} -->
+{% endfor %}
+</div>
+<br><br><br><br><br>
+<br>
+</div>
+<!-- {% include 'footer.html' %} -->
+</body>
+</html>

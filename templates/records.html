@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Records | Utsav</title>
+{% include "head.html" %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br>
+<div class="container">
+<h1 class="bg-dark">Records</h1>
+<div class="sports">
+<a href="{% url 'athletics' %}"><img src="{% static 'records/athletics.png' %}" alt="Athletics"></a>
+<a href="{% url 'badminton' %}"><img src="{% static 'records/badminton.png' %}" alt="Badminton"></a>
+<a href="{% url 'basketball' %}"><img src="{% static 'records/basketball.png' %}" alt="Basketball"></a>
+</div>
+<div class="sports">
+<a href="{% url 'carrom' %}"><img src="{% static 'records/carrom.png' %}" alt="Carrom"></a>
+<a href="{% url 'chess' %}"><img src="{% static 'records/chess.png' %}" alt="Chess"></a>
+<a href="{% url 'cricket' %}"><img src="{% static 'records/cricket.png' %}" alt="Cricket"></a>
+</div>
+<div class="sports">
+  <a href="{% url 'football' %}"><img src="{% static 'records/football.png' %}" alt="Football"></a>
+<a href="{% url 'kabaddi' %}"><img src="{% static 'records/kabaddi.png' %}" alt="Kabaddi"></a>
+<a href="{% url 'khokho' %}"><img src="{% static 'records/kho-kho.png' %}" alt="Kho-Kho"></a>
+</div>
+<div class="sports">
+  <a href="{% url 'powerlifting' %}"><img src="{% static 'records/powerlifting.png' %}" alt="Powerlifting"></a>
+  <a href="{% url 'table-tennis' %}"><img src="{% static 'records/table-tennis.png' %}" alt="Table-Tennis"></a>
+<a href="{% url 'volleyball' %}"><img src="{% static 'records/volleyball.png' %}" alt="Volleyball"></a>
+</div>
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

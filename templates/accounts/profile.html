@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include "head.html" %}
+    <title>{{ user.username }} - Profile | Utsav</title>
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br><br>
+<div class="container">
+<h1 class="bg-dark">Profile</h1>
+ <!-- message here -->
+
+  {% if messages %}
+  {% for message in messages %}
+      <small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+  {% endfor %}
+  {% endif %}
+
+{% if user.is_authenticated %}
+<div class="row">
+    <div class="col">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ user.first_name }} {{ user.last_name }}
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Username</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ user.username }}
+                    </div>
+                  </div>
+                    <hr>
+                      <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ name.profile.gender }}
+                    </div>
+                  </div>
+                    <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Course</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ name.profile.course }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ user.email }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile No.</h6>
+                    </div>
+                    <div class="col-sm-9 text-dark">
+                      {{ name.profile.mobile }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Date Joined</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.date_joined }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Login:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{ user.last_login }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </div>
+    </div>
+    <br><br>
+    {% if user.is_staff %}
+        <div>
+            <a href="{% url 'admin:index' %}"> <button class="btn btn-primary btn-lg">Go To Admin Panel</button></a>
+        </div><br>
+    {% endif %}
+  
+    <div>
+      <a href="{% url 'Display' %}"> <button class="btn btn-primary btn-lg">Captain Dashboard</button></a>
+    </div><br>
+ 
+<div>
+{% if revent_info %}
+    <div class="table table-responsive">
+    <h4 class="bg-dark text-info">Registered Events:</h4>
+            <table align="center">
+            <tr>
+                <th class="record_th">Year</th>
+                <th class="record_th">Event</th>
+                <th class="record_th">Result</th>
+            </tr>
+                {% for myrevent in revent_info %}
+                {% if user.email == myrevent.email %}
+            <tr class="bg-warning">
+                <td class="record_td">{{ myrevent.year }}</td>
+                <td class="record_td">{{ myrevent.event }}</td>
+                <td class="record_td">{{ myrevent.result }}</td>
+            </tr>
+                    {% endif %}
+    {% endfor %}
+            </table>
+    </div>
+{% endif %}
+    <br><br>
+{% if tevent_info %}
+        <h4 class="bg-dark text-info">Team Events</h4>
+    <div class="table table-responsive">
+
+            <table align="center">
+            <tr>
+                <th class="record_th">Year</th>
+                <th class="record_th">Event</th>
+                <th class="record_th">Team Name</th>
+                <th class="record_th">Captain</th>
+                <th class="record_th">Vice-Captain</th>
+                <th class="record_th">Result</th>
+            </tr>
+            {% for myrevent in tevent_info %}
+                {% if user.email == myrevent.email %}
+            <tr class="bg-warning">
+                <td class="record_td">{{ myrevent.year }}</td>
+                <td class="record_td">{{ myrevent.event_name }}</td>
+                <td class="record_td">{{ myrevent.team_name }}</td>
+                <td class="record_td">{{ myrevent.captain }}</td>
+                <td class="record_td">{{ myrevent.vice_captain }}</td>
+                <td class="record_td">{{ myrevent.result }}</td>
+            </tr>
+            {% endif %}
+    {% endfor %}
+            </table>
+    </div>
+</div>
+    {% endif %}
+    <br><br>
+    <a href="{% url 'logout' %}"><button class="btn btn-danger btn-lg">Logout</button></a>
+
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <br><br>
+    <br><br>
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+<br><br>
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

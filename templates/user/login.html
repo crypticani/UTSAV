@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   {% include "head.html" %}
+    <title>Login | Utsav</title>
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br><br>
+<div class="container">
+<div class="login">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+    <div class="content-section col-md-8 col-md-offset-2 bg-warning">
+    <br>
+    <h2>Login</h2><br>
+  <form method="POST">
+    {% csrf_token %}
+{% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <sub style="color: red">{{ error }}</sub>
+      {% endfor %}
+    </p>
+  {% endfor %}
+
+    <button class="btn btn-outline-primary" type="submit">Login</button>
+
+  <br>
+  <button class="btn btn-group-lg">Don't have account? <a href="{% url 'register' %}">Create Account</a></button>
+  </form>
+    <br>
+ </div>
+</div>
+</div>
+<br><br>
+{% include 'footer.html' %}
+</body>
+</html>

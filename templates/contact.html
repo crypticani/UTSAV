@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | UTSAV</title>
+  {% include "head.html" %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+{% include "nav.html" %}
+<br><br><br>
+<div class="container">
+  <h1 class="bg-dark">Contact</h1>
+    <div class="row">
+    <div class="col-xl bg-warning">
+        <br>
+  <h2>Sports Team</h2>
+  <b>Director</b> – Dr. Chinmay Pandya <br>
+  <b>H.O.D</b> - Shri Narendra Singh <br>
+  <b>Gym Coach</b> – Sh. Vikrant Wadhwa <br>
+  <b>Sport Coordinator</b> – Sh. Baldau Devangan & Sh. Nandkishore Pandey <br>
+  <br>
+    </div>
+        <div class="col-xl bg-warning">
+            <br>
+  <br>
+  <div>
+    <a href="{% url 'feedback' %}" id="feedback">Feedback Form</a>
+  </div>
+  <a href="https://www.facebook.com/dsvvofficialutsav/" target="_blank">
+    <img src="https://img.shields.io/badge/-Facebook-blue?&style=for-the-badge&logo=facebook&logoColor=white" id="social"></a>
+        </div>
+        <br>
+        <div class="row">
+            <div class="bg-warning col-xl">
+                <br>
+                <h2>Coaches</h2>
+                <b>Badminton: </b>Mr. <br>
+                <b>Boxing: </b>Mr. <br>
+                <br>
+            </div>
+            <div class="bg-warning col-xl">
+                <br>
+                <h2>Enquiry</h2>
+                <h6>Email</h6>
+                utsav.dsvv@gmail.com<br><br>
+                <h6>Mobile</h6>
+                9258XXXXXX<br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% include 'footer.html' %}
+</body>
+</html>

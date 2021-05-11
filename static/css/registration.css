@@ -1,0 +1,57 @@
+.reg_body{
+  text-align: center;
+  font-size: 18px;
+  line-height: 2em;
+  line-break: auto;
+}
+input, textarea, .myinput{
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 2px;
+  padding-left: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: medium;
+  line-height: 32px;
+  width: 300px;
+}
+
+option{
+  line-height: 1.5em;
+}
+
+.reg_h2{
+    font-size: 30px;
+  text-align: left;
+  width: fit-content;
+  padding: 2px;
+  margin-left: 10px;
+}
+
+.s{
+    display: block;
+    background:rgb(6, 42, 245);
+    color: aliceblue;
+    font-size: 20px;
+    line-height: 32px;
+    width: 200px;
+}
+.s:disabled{
+  background: #417fff;
+  border-color: darkblue;
+}
+
+.myform{
+    background: cornflowerblue;
+    border: 2px solid blueviolet;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    float: left;
+  margin-left: 50%;
+}
+.reg_p{
+  margin-left: 25%;
+}
+.rbutton{
+  position: center;
+    }

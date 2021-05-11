@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery | UTSAV</title>
+  {% include "head.html" %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script>
+        $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});
+    </script>
+</head>
+<body>
+{% include "nav.html" %}
+<br><br><br>
+<div class="container">
+<h1 class="bg-dark">Image Gallery</h1>
+<div class="bg-warning">
+    <br><h5>Search:</h5>
+<form method="get">
+   {{myFilter.form}}
+    <input type="submit" />
+</form>
+    <br>
+</div>
+{% if Images %}
+    {% for mygallery in Images %}
+    <div class="gallery">
+        <a href="/media/{{ mygallery.image }}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+        <figure>
+            <img src="/media/{{ mygallery.image }}" class="g">
+            <figcaption> {{ mygallery.image_name }} </figcaption>
+        </figure>
+        </a>
+        </div>
+{% endfor %}
+    {% else %}
+<p>No images</p>
+{% endif %}
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% include 'footer.html' %}
+</body>
+</html>

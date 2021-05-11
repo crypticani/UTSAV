@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+  <link rel="stylesheet" type="text/css" href={% static 'css/bootstrap.css' %}>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+     {% include "nav.html" %}
+     <div class="lead bg-warning text-dark top">
+  <h1 class="display-2">UTSAV</h1>
+  <h2 class="display-5">The annual celebration of sports and cultural events</h2>
+  <h3>An opportunity for the students to represent and develop their co-curricular skills.</h3>
+  </div>
+     <br><br><br>
+  <h1>Page Not Found</h1>
+  <h3>Sorry, but the page you were trying to view does not exist.</h3>
+</body>
+<br>
+{% include 'footer.html' %}
+</html>
+<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->

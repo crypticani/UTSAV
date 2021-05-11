@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Records | UTSAV</title>
+  {% include 'head.html' %}
+</head>
+<body style="background: repeating-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'css/img/cover.jpg' %}')">
+<div>
+    {% include 'nav.html' %}
+</div>
+<div>
+    {% include 'records/recordsnav.html' %}
+</div>
+<br><br><br><br><br>
+<div class="container">
+<h1 class="bg-dark">Chess</h1>
+<div class="bg-warning">
+<br>
+    <button type="button" class="btn btn-primary" onclick="$('#filter').toggle();">Filter</button>
+<br>
+<div id="filter" style="display: none">
+<form method="get">
+   {% for field in myFilter.form %}
+       <div class="row">
+       <div class="col-sm-3">
+       {{ field.label_tag }}
+       </div>
+           <div class="col-sm-3">
+    {{ field }}
+           </div>
+       </div>
+    {% endfor %}
+    <input type="submit" />
+    <input type="reset">
+</form>
+</div>
+<br>
+</div>
+
+<div class="table table-responsive">
+ <table align="center">
+<tr>
+<th class="record_th">Event ID</th>
+<th class="record_th">Date</th>
+    <th class="record_th">Category</th>
+<th class="record_th">Player1</th>
+<th class="record_th">Player2</th>
+    <th class="record_th">Score Player1</th>
+<th class="record_th">Score Player2</th>
+<th class="record_th">Winner</th>
+</tr>
+     {% for myrecords in record %}
+         <tr>
+         <td>{{ myrecords.event_id }}</td>
+         <td>{{ myrecords.date }}</td>
+             <td>{{ myrecords.category }}</td>
+         <td>{{ myrecords.player1 }}</td>
+         <td>{{ myrecords.player2 }}</td>
+             <td>{{ myrecords.score_p1 }}</td>
+         <td>{{ myrecords.score_p2 }}</td>
+         <td>{{ myrecords.winner }}</td>
+        </tr>
+{% endfor %}
+  </table>
+</div>
+<br><br>
+<button class="btn btn-primary" onclick="window.print()">Print</button>
+</div>
+</body>
+</html>
