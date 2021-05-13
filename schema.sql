@@ -1,57 +1,6 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "django_session" (
-	"session_key"	varchar(40) NOT NULL,
-	"session_data"	text NOT NULL,
-	"expire_date"	datetime NOT NULL,
-	PRIMARY KEY("session_key")
-);
-CREATE TABLE IF NOT EXISTS "registration_rules" (
-	"id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"is_active"	bool NOT NULL,
-	"rule"	text NOT NULL
-);
-CREATE TABLE IF NOT EXISTS "records_athleticsmodel" (
+CREATE TABLE IF NOT EXISTS "records_tabletennismodel" (
 	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
-	"event_name"	varchar(30) NOT NULL,
-	"player_name"	varchar(30) NOT NULL,
-	"idnum"	integer NOT NULL,
-	"result"	varchar(10) NOT NULL,
-	"category_id"	integer NOT NULL,
-	"event_id_id"	integer NOT NULL,
-	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
-);
-CREATE TABLE IF NOT EXISTS "records_badmintonmodel" (
-	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
-	"team1_player1"	varchar(30) NOT NULL,
-	"team1_player2"	varchar(30) NOT NULL,
-	"team2_player1"	varchar(30) NOT NULL,
-	"team2_player2"	varchar(30) NOT NULL,
-	"score"	varchar(10) NOT NULL,
-	"winner"	varchar(30) NOT NULL,
-	"category_id"	integer NOT NULL,
-	"event_id_id"	integer NOT NULL,
-	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
-);
-CREATE TABLE IF NOT EXISTS "records_carrommodel" (
-	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
-	"team1_player1"	varchar(30) NOT NULL,
-	"team1_player2"	varchar(30) NOT NULL,
-	"team2_player1"	varchar(30) NOT NULL,
-	"team2_player2"	varchar(30) NOT NULL,
-	"winner"	varchar(30) NOT NULL,
-	"category_id"	integer NOT NULL,
-	"event_id_id"	integer NOT NULL,
-	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
-);
-CREATE TABLE IF NOT EXISTS "records_chessmodel" (
-	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
 	"player1"	varchar(30) NOT NULL,
 	"player2"	varchar(30) NOT NULL,
 	"score_p1"	varchar(30) NOT NULL,
@@ -64,7 +13,6 @@ CREATE TABLE IF NOT EXISTS "records_chessmodel" (
 );
 CREATE TABLE IF NOT EXISTS "records_powerliftingmodel" (
 	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
 	"player_name"	varchar(30) NOT NULL,
 	"idnum"	integer NOT NULL,
 	"weight"	varchar(10) NOT NULL,
@@ -74,9 +22,8 @@ CREATE TABLE IF NOT EXISTS "records_powerliftingmodel" (
 	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
 );
-CREATE TABLE IF NOT EXISTS "records_tabletennismodel" (
+CREATE TABLE IF NOT EXISTS "records_chessmodel" (
 	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"date"	date NOT NULL,
 	"player1"	varchar(30) NOT NULL,
 	"player2"	varchar(30) NOT NULL,
 	"score_p1"	varchar(30) NOT NULL,
@@ -86,6 +33,89 @@ CREATE TABLE IF NOT EXISTS "records_tabletennismodel" (
 	"event_id_id"	integer NOT NULL,
 	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "records_carrommodel" (
+	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"team1_player1"	varchar(30) NOT NULL,
+	"team1_player2"	varchar(30) NOT NULL,
+	"team2_player1"	varchar(30) NOT NULL,
+	"team2_player2"	varchar(30) NOT NULL,
+	"winner"	varchar(30) NOT NULL,
+	"category_id"	integer NOT NULL,
+	"event_id_id"	integer NOT NULL,
+	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "records_badmintonmodel" (
+	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"team1_player1"	varchar(30) NOT NULL,
+	"team1_player2"	varchar(30) NOT NULL,
+	"team2_player1"	varchar(30) NOT NULL,
+	"team2_player2"	varchar(30) NOT NULL,
+	"score"	varchar(10) NOT NULL,
+	"winner"	varchar(30) NOT NULL,
+	"category_id"	integer NOT NULL,
+	"event_id_id"	integer NOT NULL,
+	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "records_athleticsmodel" (
+	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"event_name"	varchar(30) NOT NULL,
+	"player_name"	varchar(30) NOT NULL,
+	"idnum"	integer NOT NULL,
+	"result"	varchar(10) NOT NULL,
+	"category_id"	integer NOT NULL,
+	"event_id_id"	integer NOT NULL,
+	FOREIGN KEY("event_id_id") REFERENCES "events_individualeventslist"("id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "registration_individualregistration" (
+	"reg_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"year"	integer NOT NULL,
+	"name"	varchar(100) NOT NULL,
+	"course"	varchar(100) NOT NULL,
+	"mobile"	varchar(10) NOT NULL,
+	"email"	varchar(254) NOT NULL,
+	"event_id"	integer NOT NULL,
+	"idnum"	varchar(6) NOT NULL,
+	FOREIGN KEY("event_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS "events_teameventlist" (
+	"id"	integer NOT NULL,
+	"datetime"	datetime NOT NULL,
+	"venue"	varchar(30) NOT NULL,
+	"event_name_id"	integer NOT NULL,
+	"team1_id"	integer NOT NULL,
+	"team2_id"	integer NOT NULL,
+	"year"	integer NOT NULL,
+	FOREIGN KEY("team2_id") REFERENCES "registration_teamregistrationmodel"("reg_id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("team1_id") REFERENCES "registration_teamregistrationmodel"("reg_id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("event_name_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED,
+	PRIMARY KEY("id")
+);
+CREATE TABLE IF NOT EXISTS "events_individualeventslist" (
+	"id"	integer NOT NULL,
+	"fix"	varchar(100) NOT NULL,
+	"datetime"	datetime NOT NULL,
+	"venue"	varchar(100) NOT NULL,
+	"category_id"	integer,
+	"event_id"	integer NOT NULL,
+	"year"	integer NOT NULL,
+	FOREIGN KEY("event_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED,
+	PRIMARY KEY("id")
+);
+CREATE TABLE IF NOT EXISTS "django_session" (
+	"session_key"	varchar(40) NOT NULL,
+	"session_data"	text NOT NULL,
+	"expire_date"	datetime NOT NULL,
+	PRIMARY KEY("session_key")
+);
+CREATE TABLE IF NOT EXISTS "registration_rules" (
+	"id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"is_active"	bool NOT NULL,
+	"rule"	text NOT NULL
 );
 CREATE TABLE IF NOT EXISTS "records_teamrecordmodel" (
 	"record_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -129,40 +159,6 @@ CREATE TABLE IF NOT EXISTS "main_galleryfolder" (
 CREATE TABLE IF NOT EXISTS "main_courses" (
 	"id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	"course"	varchar(20) NOT NULL
-);
-CREATE TABLE IF NOT EXISTS "events_individualeventslist" (
-	"id"	integer NOT NULL,
-	"fix"	varchar(100) NOT NULL,
-	"datetime"	datetime NOT NULL,
-	"venue"	varchar(100) NOT NULL,
-	"category_id"	integer,
-	"event_id"	integer NOT NULL,
-	FOREIGN KEY("event_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("category_id") REFERENCES "registration_categories"("category_id") DEFERRABLE INITIALLY DEFERRED,
-	PRIMARY KEY("id")
-);
-CREATE TABLE IF NOT EXISTS "events_teameventlist" (
-	"id"	integer NOT NULL,
-	"datetime"	datetime NOT NULL,
-	"venue"	varchar(30) NOT NULL,
-	"event_name_id"	integer NOT NULL,
-	"team1_id"	integer NOT NULL,
-	"team2_id"	integer NOT NULL,
-	FOREIGN KEY("team2_id") REFERENCES "registration_teamregistrationmodel"("reg_id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("team1_id") REFERENCES "registration_teamregistrationmodel"("reg_id") DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY("event_name_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED,
-	PRIMARY KEY("id")
-);
-CREATE TABLE IF NOT EXISTS "registration_individualregistration" (
-	"reg_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	"idnum"	integer NOT NULL,
-	"year"	integer NOT NULL,
-	"name"	varchar(100) NOT NULL,
-	"course"	varchar(100) NOT NULL,
-	"mobile"	varchar(10) NOT NULL,
-	"email"	varchar(254) NOT NULL,
-	"event_id"	integer NOT NULL,
-	FOREIGN KEY("event_id") REFERENCES "registration_events"("tevent_id") DEFERRABLE INITIALLY DEFERRED
 );
 CREATE TABLE IF NOT EXISTS "registration_teamplayers" (
 	"player_id"	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -271,31 +267,10 @@ CREATE TABLE IF NOT EXISTS "django_migrations" (
 	"name"	varchar(255) NOT NULL,
 	"applied"	datetime NOT NULL
 );
-CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" (
-	"expire_date"
-);
-CREATE INDEX IF NOT EXISTS "records_athleticsmodel_event_id_id_13eeab18" ON "records_athleticsmodel" (
+CREATE INDEX IF NOT EXISTS "records_tabletennismodel_event_id_id_d899afda" ON "records_tabletennismodel" (
 	"event_id_id"
 );
-CREATE INDEX IF NOT EXISTS "records_athleticsmodel_category_id_91b923bc" ON "records_athleticsmodel" (
-	"category_id"
-);
-CREATE INDEX IF NOT EXISTS "records_badmintonmodel_event_id_id_7c35f15a" ON "records_badmintonmodel" (
-	"event_id_id"
-);
-CREATE INDEX IF NOT EXISTS "records_badmintonmodel_category_id_8418987d" ON "records_badmintonmodel" (
-	"category_id"
-);
-CREATE INDEX IF NOT EXISTS "records_carrommodel_event_id_id_2abb0b8d" ON "records_carrommodel" (
-	"event_id_id"
-);
-CREATE INDEX IF NOT EXISTS "records_carrommodel_category_id_70bb669c" ON "records_carrommodel" (
-	"category_id"
-);
-CREATE INDEX IF NOT EXISTS "records_chessmodel_event_id_id_9c98f2b4" ON "records_chessmodel" (
-	"event_id_id"
-);
-CREATE INDEX IF NOT EXISTS "records_chessmodel_category_id_92aa54eb" ON "records_chessmodel" (
+CREATE INDEX IF NOT EXISTS "records_tabletennismodel_category_id_5a9720ed" ON "records_tabletennismodel" (
 	"category_id"
 );
 CREATE INDEX IF NOT EXISTS "records_powerliftingmodel_event_id_id_dc9cc6fa" ON "records_powerliftingmodel" (
@@ -304,11 +279,50 @@ CREATE INDEX IF NOT EXISTS "records_powerliftingmodel_event_id_id_dc9cc6fa" ON "
 CREATE INDEX IF NOT EXISTS "records_powerliftingmodel_category_id_7a001347" ON "records_powerliftingmodel" (
 	"category_id"
 );
-CREATE INDEX IF NOT EXISTS "records_tabletennismodel_event_id_id_d899afda" ON "records_tabletennismodel" (
+CREATE INDEX IF NOT EXISTS "records_chessmodel_event_id_id_9c98f2b4" ON "records_chessmodel" (
 	"event_id_id"
 );
-CREATE INDEX IF NOT EXISTS "records_tabletennismodel_category_id_5a9720ed" ON "records_tabletennismodel" (
+CREATE INDEX IF NOT EXISTS "records_chessmodel_category_id_92aa54eb" ON "records_chessmodel" (
 	"category_id"
+);
+CREATE INDEX IF NOT EXISTS "records_carrommodel_event_id_id_2abb0b8d" ON "records_carrommodel" (
+	"event_id_id"
+);
+CREATE INDEX IF NOT EXISTS "records_carrommodel_category_id_70bb669c" ON "records_carrommodel" (
+	"category_id"
+);
+CREATE INDEX IF NOT EXISTS "records_badmintonmodel_event_id_id_7c35f15a" ON "records_badmintonmodel" (
+	"event_id_id"
+);
+CREATE INDEX IF NOT EXISTS "records_badmintonmodel_category_id_8418987d" ON "records_badmintonmodel" (
+	"category_id"
+);
+CREATE INDEX IF NOT EXISTS "records_athleticsmodel_event_id_id_13eeab18" ON "records_athleticsmodel" (
+	"event_id_id"
+);
+CREATE INDEX IF NOT EXISTS "records_athleticsmodel_category_id_91b923bc" ON "records_athleticsmodel" (
+	"category_id"
+);
+CREATE INDEX IF NOT EXISTS "registration_individualregistration_event_id_01ac1426" ON "registration_individualregistration" (
+	"event_id"
+);
+CREATE INDEX IF NOT EXISTS "events_teameventlist_team2_id_98529d20" ON "events_teameventlist" (
+	"team2_id"
+);
+CREATE INDEX IF NOT EXISTS "events_teameventlist_team1_id_3ef7d248" ON "events_teameventlist" (
+	"team1_id"
+);
+CREATE INDEX IF NOT EXISTS "events_teameventlist_event_name_id_a8d07b30" ON "events_teameventlist" (
+	"event_name_id"
+);
+CREATE INDEX IF NOT EXISTS "events_individualeventslist_event_id_a8d48192" ON "events_individualeventslist" (
+	"event_id"
+);
+CREATE INDEX IF NOT EXISTS "events_individualeventslist_category_id_3d15af44" ON "events_individualeventslist" (
+	"category_id"
+);
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" (
+	"expire_date"
 );
 CREATE INDEX IF NOT EXISTS "records_teamrecordmodel_winner_id_88258413" ON "records_teamrecordmodel" (
 	"winner_id"
@@ -321,24 +335,6 @@ CREATE INDEX IF NOT EXISTS "main_gallerymodel_folder_id_id_02394e0f" ON "main_im
 );
 CREATE INDEX IF NOT EXISTS "main_profile_course_id_1195935e" ON "main_profile" (
 	"course_id"
-);
-CREATE INDEX IF NOT EXISTS "events_individualeventslist_event_id_a8d48192" ON "events_individualeventslist" (
-	"event_id"
-);
-CREATE INDEX IF NOT EXISTS "events_individualeventslist_category_id_3d15af44" ON "events_individualeventslist" (
-	"category_id"
-);
-CREATE INDEX IF NOT EXISTS "events_teameventlist_team2_id_98529d20" ON "events_teameventlist" (
-	"team2_id"
-);
-CREATE INDEX IF NOT EXISTS "events_teameventlist_team1_id_3ef7d248" ON "events_teameventlist" (
-	"team1_id"
-);
-CREATE INDEX IF NOT EXISTS "events_teameventlist_event_name_id_a8d07b30" ON "events_teameventlist" (
-	"event_name_id"
-);
-CREATE INDEX IF NOT EXISTS "registration_individualregistration_event_id_01ac1426" ON "registration_individualregistration" (
-	"event_id"
 );
 CREATE INDEX IF NOT EXISTS "registration_teamplayers_team_id_id_075452a9" ON "registration_teamplayers" (
 	"team_id_id"
