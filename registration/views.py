@@ -66,7 +66,7 @@ def TeamRegisteration(request):
         id_number = request.POST.get('id_number')
         email = request.POST.get('email')
 
-        count = TeamPlayers.objects.filter(idnum=idnum).count()
+        count = TeamPlayers.objects.filter(id_number=id_number).count()
         if(TeamPlayers.objects.filter(id_number=id_number, team_id=team_id)):
             return HttpResponse("Error!<br>Player already registered.")
         elif(count > 2):
@@ -82,4 +82,5 @@ def TeamRegisteration(request):
             except:
                 return HttpResponse("Error! <br>Mail could not be sent.")
     return render(request, 'registeration.html')
+
 
