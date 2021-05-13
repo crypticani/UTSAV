@@ -15,7 +15,7 @@ class AthleticsFilter(django_filters.FilterSet):
     class Meta:
         model = models.AthleticsModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'player_name': ['icontains'],
                 'idnum': ['exact'],
@@ -27,7 +27,7 @@ class BadmintonFilter(django_filters.FilterSet):
     class Meta:
         model = models.BadmintonModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'winner': ['icontains']
         }
@@ -48,7 +48,7 @@ class CarromFilter(django_filters.FilterSet):
     class Meta:
         model = models.CarromModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'winner': ['icontains']
         }
@@ -58,7 +58,7 @@ class ChessFilter(django_filters.FilterSet):
     class Meta:
         model = models.ChessModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'winner': ['icontains']
         }
@@ -112,7 +112,7 @@ class PowerliftingFilter(django_filters.FilterSet):
     class Meta:
         model = models.PowerliftingModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'player_name': ['icontains'],
                 'result': ['icontains']
@@ -123,7 +123,7 @@ class TableTennisFilter(django_filters.FilterSet):
     class Meta:
         model = models.TableTennisModel
         fields = {
-                'date': ['gt', 'lt'],
+                'event_id__datetime': ['gt', 'lt'],
                 'category': ['exact'],
                 'winner': ['icontains']
         }
@@ -137,11 +137,3 @@ class VolleyballFilter(django_filters.FilterSet):
                 'event_id__event_name__category': ['exact'],
                 'winner__team_name__team_name': ['icontains']
         }
-        # fields = '__all__'
-
-
-# class GalleryFilter(django_filters.FilterSet):
-#     class Meta:
-#         model = models.GalleryModel
-#         fields = {'image_name': ['icontains']
-#         }

@@ -30,7 +30,7 @@ class Events(models.Model):
 
 class IndividualRegistration(models.Model):
     reg_id = models.AutoField(primary_key=True)
-    idnum = models.IntegerField()
+    idnum = models.CharField(max_length=6, default=000000)
     year = models.IntegerField(default=datetime.date.today().year)
     name = models.CharField(max_length=100, blank=True)
     # category = models.ForeignKey(Categories, on_delete=models.CASCADE)

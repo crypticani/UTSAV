@@ -40,7 +40,7 @@ class TeamRegistrationA(admin.ModelAdmin):
 
 class TeamPlayersI(admin.TabularInline):
     model = models.TeamPlayers
-    extra_fields = 1
+    extra = 0
 
 
 class PermanentTeamA(admin.ModelAdmin):
@@ -72,6 +72,17 @@ class TeamPlayersA(admin.ModelAdmin):
     search_fields = ['player_name', 'id_number']
 
 
+class EventsA(admin.ModelAdmin):
+    list_display = ['events', 'category', 'type', 'active']
+    list_filter = ['category', 'type', 'active']
+    search_fields = ['events']
+
+
+class RulesA(admin.ModelAdmin):
+    list_display = ['rule', 'is_active']
+    list_filter = ['is_active']
+    search_fields = ['rule']
+
 admin.site.register(models.IndividualRegistration, IndRegister)
 admin.site.register(models.TeamRegistrationmodel, TeamRegistrationA)
 # admin.site.register(models.TeamEventList, TeamEventsListA)
@@ -79,5 +90,5 @@ admin.site.register(models.TeamRegistrationmodel, TeamRegistrationA)
 admin.site.register(models.PermanentTeam, PermanentTeamA)
 admin.site.register(models.TeamPlayers, TeamPlayersA)
 admin.site.register(models.Categories)
-admin.site.register(models.Events)
-admin.site.register(models.Rules)
+admin.site.register(models.Events, EventsA)
+admin.site.register(models.Rules, RulesA)

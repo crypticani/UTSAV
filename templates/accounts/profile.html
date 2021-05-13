@@ -121,13 +121,13 @@
                 <th class="record_th">Result</th>
             </tr>
                 {% for myrevent in revent_info %}
-                {% if user.email == myrevent.email %}
+               
             <tr class="bg-warning">
                 <td class="record_td">{{ myrevent.year }}</td>
                 <td class="record_td">{{ myrevent.event }}</td>
                 <td class="record_td">{{ myrevent.result }}</td>
             </tr>
-                    {% endif %}
+                   
     {% endfor %}
             </table>
     </div>
@@ -139,24 +139,22 @@
 
             <table align="center">
             <tr>
-                <th class="record_th">Year</th>
                 <th class="record_th">Event</th>
                 <th class="record_th">Team Name</th>
                 <th class="record_th">Captain</th>
-                <th class="record_th">Vice-Captain</th>
-                <th class="record_th">Result</th>
+                <th class="record_th">Contact(Captain)</th>
+                <th class="record_th">Is Active</th>
             </tr>
             {% for myrevent in tevent_info %}
-                {% if user.email == myrevent.email %}
+               
             <tr class="bg-warning">
-                <td class="record_td">{{ myrevent.year }}</td>
-                <td class="record_td">{{ myrevent.event_name }}</td>
-                <td class="record_td">{{ myrevent.team_name }}</td>
-                <td class="record_td">{{ myrevent.captain }}</td>
-                <td class="record_td">{{ myrevent.vice_captain }}</td>
-                <td class="record_td">{{ myrevent.result }}</td>
+                <td class="record_td">{{ myrevent.team_id.event_name.events }}</td>
+                <td class="record_td">{{ myrevent.team_id.team_name }}</td>
+                <td class="record_td">{{ myrevent.team_id.captain }}</td>
+                <td class="record_td">{{ myrevent.team_id.mobile }}</td>
+                <td class="record_td">{{ myrevent.is_active }}</td>
             </tr>
-            {% endif %}
+           
     {% endfor %}
             </table>
     </div>

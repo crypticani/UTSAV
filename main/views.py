@@ -135,8 +135,15 @@ def activate(request, uidb64, token):
 # Edit Profile View
 def Profile(request):
     if request.user.is_authenticated:
-        data1 = IndividualRegistration.objects.order_by('year')
-        return render(request, 'accounts/profile.html', {'name': request.user, "revent_info": data1})
+        user = request.user
+        data1 = IndividualRegistration.objects.filter(idnum=user)
+        data2 = TeamPlayers.objects.filter(id_number=user)
+        context = {
+                    'name': user, 
+                    "revent_info": data1,
+                    "tevent_info": data2
+                    }
+        return render(request, 'accounts/profile.html', context)
     else:
         return HttpResponseRedirect('/login/')
 

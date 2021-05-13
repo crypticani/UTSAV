@@ -53,8 +53,8 @@
 </tr>
      {% for myrecords in record %}
          <tr>
-         <!-- <td>{{ myrecords.event_id }}</td> -->
-         <td>{{ myrecords.date }}</td>
+        <td>{{ myrecords.event_id.datetime }}</td>
+         <!-- <td>{{ myrecords.date }}</td> -->
              <td>{{ myrecords.category }}</td>
          <td>{{ myrecords.team1_player1 }}</td>
          <td>{{ myrecords.team1_player2 }}</td>

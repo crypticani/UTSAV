@@ -83,4 +83,3 @@ def TeamRegisteration(request):
                 return HttpResponse("Error! <br>Mail could not be sent.")
     return render(request, 'registeration.html')
 
-

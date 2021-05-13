@@ -19,8 +19,8 @@ class TeamRecordModel(models.Model):
 
 class AthleticsModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={'year': datetime.date.today().year, 'event__events':'Athletics'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -38,8 +38,8 @@ class AthleticsModel(models.Model):
 
 class BadmintonModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={'year': datetime.date.today().year, 'event__events': 'Badminton'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -59,8 +59,9 @@ class BadmintonModel(models.Model):
 
 class CarromModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={
+                                 'year': datetime.date.today().year, 'event__events': 'Carrom'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -79,8 +80,9 @@ class CarromModel(models.Model):
 
 class ChessModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={
+                                 'year': datetime.date.today().year, 'event__events': 'Chess'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -99,8 +101,9 @@ class ChessModel(models.Model):
 
 class PowerliftingModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={
+                                 'year': datetime.date.today().year, 'event__events': 'Powerlifting'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -118,8 +121,9 @@ class PowerliftingModel(models.Model):
 
 class TableTennisModel(models.Model):
     record_id = models.AutoField(primary_key=True)
-    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    event_id = models.ForeignKey(IndividualEventsList, on_delete=models.CASCADE, limit_choices_to={
+                                 'year': datetime.date.today().year, 'event__events': 'Table Tennis'})
+    # date = models.DateField(blank=True)
     # categories = (('Male', 'Male'), ('Female', 'Female'))
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)

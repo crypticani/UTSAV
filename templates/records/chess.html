@@ -42,8 +42,8 @@
 <div class="table table-responsive">
  <table align="center">
 <tr>
-<th class="record_th">Event ID</th>
 <th class="record_th">Date</th>
+
     <th class="record_th">Category</th>
 <th class="record_th">Player1</th>
 <th class="record_th">Player2</th>
@@ -53,8 +53,8 @@
 </tr>
      {% for myrecords in record %}
          <tr>
-         <td>{{ myrecords.event_id }}</td>
-         <td>{{ myrecords.date }}</td>
+         <td>{{ myrecords.event_id.datetime }}</td>
+         <!-- <td>{{ myrecords.date }}</td> -->
              <td>{{ myrecords.category }}</td>
          <td>{{ myrecords.player1 }}</td>
          <td>{{ myrecords.player2 }}</td>

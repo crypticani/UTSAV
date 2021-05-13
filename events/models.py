@@ -1,7 +1,7 @@
 from django.db import models
 from registration.models import *
 from registration import models as R
-import datetime
+import datetime as dt
 
 # Create your models here.
 
@@ -11,6 +11,7 @@ class TeamEventList(models.Model):
     team1 = models.ForeignKey(TeamRegistrationmodel, related_name='team11', on_delete=models.CASCADE, limit_choices_to={'year': datetime.date.today().year})
     team2 = models.ForeignKey(TeamRegistrationmodel, related_name='team12', on_delete=models.CASCADE, limit_choices_to={'year': datetime.date.today().year})
     datetime = models.DateTimeField()
+    year = models.IntegerField(default = dt.date.today().year)
     venue = models.CharField(max_length=30)
     # today = datetime.today()
 
@@ -33,6 +34,7 @@ class IndividualEventsList(models.Model):
     # category = models.CharField(blank=True, max_length=10, choices=categories)
     category = models.ForeignKey(R.Categories, on_delete=models.SET_NULL, null=True)
     datetime = models.DateTimeField(blank=True)
+    year = models.IntegerField(default=dt.date.today().year)
     venue = models.CharField(blank=True, max_length=100)
     # today = datetime.today()
 
@@ -40,7 +42,7 @@ class IndividualEventsList(models.Model):
         verbose_name_plural = "Individual Events"
 
     def __str__(self):
-        return str(self.event)
+        return str('{} , {}'.format(self.event, self.datetime.date()))
 
     @property
     def is_past_event(self):
