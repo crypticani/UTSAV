@@ -16,11 +16,20 @@ source <env-name>/bin/activate
 ```
 #### Move to the project's directory
 ``` 
-cd utsav-django
+cd UTSAV
 ```
 #### Install Requirements
 ```
 pip install -r requirements.txt
+```
+#### Edit Settings File
+- Go to UTSAV/settings.py
+- Update your email (line 142) and app password (line 143)
+- Update database connection settings (if using other than SQLite)
+
+#### Create migrations
+```
+python manage.py makemigrations main events records registrations
 ```
 #### Migrate (Apply migrations to create all the database tables)
 ```
@@ -30,7 +39,7 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
-- Starting server
+#### Starting server
 ```
 python manage.py runserver
 ```
